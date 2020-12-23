@@ -4,14 +4,27 @@
 \alias{grafica_usuarios}
 \title{grafica_usuarios}
 \usage{
-grafica_usuarios(user, corp_tmln, folder)
+grafica_usuarios(
+  corp_tmln,
+  name = "nombre",
+  type = "usuario_tendencia",
+  num_freq = 25,
+  folder = ".",
+  stopwords_pers = ""
+)
 }
 \arguments{
-\item{user}{corpus que será tokenizado}
-
 \item{corp_tmln}{corpus que será tokenizado}
 
+\item{name}{nombre del usuario o del trend a analizar}
+
+\item{type}{el tipo de objeto twitter a analizas. Puede ser "tendencia" o "usuario"}
+
+\item{num_freq}{Top n de palabras a mostrar}
+
 \item{folder}{Folder donde se va  a guardar la imagen}
+
+\item{stopword_pers}{lista de stopwords personalizadas para filtrar}
 }
 \description{
 Función que grafica una red de usuarios

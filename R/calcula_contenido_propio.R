@@ -1,4 +1,5 @@
 #' @import magrittr
+#' @importFrom dplyr mutate case_when
 #' @title calcula_contenido_propio
 #' @description Esta es una funcion pra calcular si el contenido es propio o retweet o quote
 #' @param df Dataframe con columnas: is_quote

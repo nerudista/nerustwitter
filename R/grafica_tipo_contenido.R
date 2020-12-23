@@ -21,8 +21,8 @@ grafica_tipo_contenido <- function(tmln, folder){
 
   # REcupero el usuario
   user <- tmln %>% dplyr::distinct(screen_name)
-  print(user)
-  print(folder)
+  #print(user)
+  #print(folder)
 
   num_tweets <- tmln %>% tally( )
 
@@ -34,7 +34,7 @@ grafica_tipo_contenido <- function(tmln, folder){
 
   #print("group terminado")
 
- plot <-  ggplot2::ggplot(data=tmln_group, aes(x=fct_relevel( contenido_propio,
+ plot <-  ggplot2::ggplot(data=tmln_group, aes(x=forcats::fct_relevel( contenido_propio,
                                              "Contenido Propio",
                                              "Citar Tweet",
                                              "Respuesta a Tweet",
@@ -43,8 +43,10 @@ grafica_tipo_contenido <- function(tmln, folder){
                               fill=contenido_propio)
   )+
     ggplot2::geom_col() +
-    ggplot2::geom_text(aes(label=ocurrencias),
-              nudge_y = 28
+    ggplot2::geom_text(position = "identity",
+                       aes(label=ocurrencias,
+                           vjust=-.8),
+                       # nudge_y = 28
     )+
    ggplot2::labs(title= "Distribucion por Tipo de Interacción",
          subtitle = paste0("Últimos ",ntweets, " tweets para el usuario @",user),
@@ -64,7 +66,7 @@ grafica_tipo_contenido <- function(tmln, folder){
            axis.text.y = element_blank()
     )
 
-    # to work well with the RStudio graphics device (RStudioGD).
+  # to work well with the RStudio graphics device (RStudioGD).
  showtext_opts(dpi = 96)
  showtext::showtext_auto()
 
@@ -72,6 +74,8 @@ grafica_tipo_contenido <- function(tmln, folder){
     ggplot2::ggsave(
       filename = paste0( folder,"/contenido_plot_",user,".png"),
       plot = plot,
+      width = 8,
+      height = 5,
       device = "png",
       dpi =96
     )

@@ -4,14 +4,27 @@
 \alias{grafica_wordcloud_all}
 \title{grafica_wordcloud_all}
 \usage{
-grafica_wordcloud_all(user, corp_tmln, folder)
+grafica_wordcloud_all(
+  corp_tmln,
+  name = "nombre",
+  type = "usuario_tendencia",
+  num_freq = 100,
+  folder = ".",
+  stopwords_pers = ""
+)
 }
 \arguments{
-\item{user}{corpus que será tokenizado}
-
 \item{corp_tmln}{corpus que será tokenizado}
 
+\item{name}{nombre del usuario o del trend a analizar}
+
+\item{type}{el tipo de objeto twitter a analizas. Puede ser "tendencia" o "usuario"}
+
+\item{num_freq}{Top n de palabras a mostrar}
+
 \item{folder}{Folder donde se va  a guardar la imagen}
+
+\item{stopword_pers}{lista de stopwords personalizadas para filtrar}
 }
 \description{
 Función que grafica una nube de palabras sin hastags ni usuarios
