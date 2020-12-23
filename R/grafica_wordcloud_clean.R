@@ -4,31 +4,31 @@
 #' @importFrom RColorBrewer brewer.pal
 #' @title grafica_wordcloud_clean
 #' @description Función que grafica una nube de palabras sin hastags ni usuarios
-#' @param user corpus que será tokenizado
+#' @param name nombre del usuario o del trend a analizar
+#' @param type el tipo de objeto twitter a analizas. Puede ser "tendencia" o "usuario"
+#' @param num_freq Top n de palabras a mostrar
 #' @param corp_tmln corpus que será tokenizado
 #' @param folder Folder donde se va  a guardar la imagen
+#' @param stopword_pers lista de stopwords personalizadas para filtrar
 #' @details Genera wordcloud quitando hashtags y usuarios
 #' @examples
 #' grafica_wordcloud_clean('nerudista',corpus,"./03Graficos/")
 #' @export
 
 
-grafica_wordcloud_clean <- function(user,corp_tmln, folder){
+grafica_wordcloud_clean <- function(corp_tmln,
+                                    name="nombre",
+                                    type="usuario_tendencia",
+                                    num_freq = 100,
+                                    folder=".",
+                                    stopwords_pers=""){
 
-  tokens_tmln <-quanteda::tokens(corp_tmln,
-                                 remove_punct = TRUE,
-                                 remove_symbols = TRUE,
-                                 remove_numbers = TRUE,
-                                 remove_url = TRUE
+  stopifnot( is.corpus(corp_tmln)
   )
 
-  tokens_tmln <- quanteda::tokens_select(tokens_tmln, stopwords('es'),selection='remove')
-
-  tokens_tmln <- quanteda::tokens_select(tokens_tmln, stopwords('en'),selection='remove')
-
-  # quitar emojis
-  tokens_tmln <- quanteda::tokens_select(tokens_tmln, valuetype = "glob", pattern = ".U000.*", selection = 'remove')
-
+  # Crear objeto tokens a partir del corpus recibido
+  tokens_tmln <- nerustwitter::tokenizar_corpus(corp_tmln = corp_tmln,
+                                                stopwords_pers = stopwords_pers)
 
   # Construir una document  feature matrix a partir del objeto de tokens
   tweet_dfm <- quanteda::dfm(tokens_tmln)
@@ -40,18 +40,30 @@ grafica_wordcloud_clean <- function(user,corp_tmln, folder){
   words_dfm <- quanteda::dfm_select(words_dfm, pattern = ("@*"), selection = 'remove')
 
 
-  print("dfm creado")
+  #print("dfm creado")
+
+  # to work well with the RStudio graphics device (RStudioGD).
+  showtext::showtext_opts(dpi = 96)
+  showtext::showtext_auto()
+
+
 
   # Grafica sin hastags ni usuarios
-  quanteda::textplot_wordcloud(words_dfm,
-                     min_size = .5,
-                     max_size = 4,
+  # Hay que guardar como plot d eR base porque el wordcloud no e funciona como ggplot
+  # https://stackoverflow.com/questions/46499719/error-in-using-heatmap-as-the-plot-input-of-ggsave
+
+  png(file=paste0( folder,"/clean_wordcloud_top",num_freq,"_",type,"_",name,".png"),
+      width=600,height=600, units='px', res=120)
+
+
+  quanteda::textplot_wordcloud( words_dfm,
+                     min_size = .8,
+                     max_size = 3,
                      random_order = FALSE,
                      color = RColorBrewer::brewer.pal(7, "Blues"),
-                     max_words = 100) %>%
-    ggplot2::ggsave(filename = paste0( folder,"/clean_wordcloud_top100_",user,".png"),
-                    device = "png",
-                    dpi = 72)
+                     max_words = 100)
+
+  dev.off()
 
   print("Imagen guardada")
 }

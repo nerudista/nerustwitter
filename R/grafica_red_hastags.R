@@ -3,29 +3,31 @@
 #' @importFrom quanteda tokens tokens_select dfm dfm_select fcm fcm_select textplot_network
 #' @title grafica_hashtags
 #' @description Función que grafica una red de hastags
-#' @param user corpus que será tokenizado
+#' @param name nombre del usuario o del trend a analizar
+#' @param type el tipo de objeto twitter a analizas. Puede ser "tendencia" o "usuario"
+#' @param num_freq Top n de palabras a mostrar
 #' @param corp_tmln corpus que será tokenizado
 #' @param folder Folder donde se va  a guardar la imagen
+#' @param stopword_pers lista de stopwords personalizadas para filtrar
 #' @details Genera grafica de barras
 #' @examples
 #' grafica_hashtags('nerudista',corpus,"./03Graficos/")
 #' @export
 
 
-grafica_hashtags <- function(user,corp_tmln, folder){
+grafica_hashtags <- function(corp_tmln,
+                             name="nombre",
+                             type="usuario_tendencia",
+                             num_freq = 25,
+                             folder=".",
+                             stopwords_pers=""){
 
-  tokens_tmln <-quanteda::tokens(corp_tmln,
-                        remove_punct = TRUE,
-                        remove_symbols = TRUE,
-                        remove_numbers = TRUE,
-                        remove_url = TRUE
+  stopifnot( is.corpus(corp_tmln)
   )
 
-  tokens_tmln <- quanteda::tokens_select(tokens_tmln, stopwords('es'),selection='remove')
-
-  tokens_tmln <- quanteda::tokens_select(tokens_tmln, stopwords('en'),selection='remove')
-
-  tokens_tmln <- quanteda::tokens_select(tokens_tmln, valuetype = "glob", pattern = ".U000.*", selection = 'remove')
+  # Crear objeto tokens a partir del corpus recibido
+  tokens_tmln <- nerustwitter::tokenizar_corpus(corp_tmln = corp_tmln,
+                                                stopwords_pers = stopwords_pers)
 
 
   # Construir una document  feature matrix a partir del objeto de tokens
@@ -36,7 +38,7 @@ grafica_hashtags <- function(user,corp_tmln, folder){
   tag_dfm <- quanteda::dfm_select(tweet_dfm, pattern = ("#*"))
   #head(tag_dfm)
 
-  toptag <- names(quanteda::topfeatures(tag_dfm, 30))
+  toptag <- names(quanteda::topfeatures(tag_dfm, num_freq))
   #head(toptag)
 
   #Crear feature-occurrence matrix de hashtags
@@ -48,8 +50,10 @@ grafica_hashtags <- function(user,corp_tmln, folder){
 
 
   quanteda::textplot_network(topgat_fcm, min_freq = 0.1, edge_alpha = 0.7, edge_size = 4) %>%
-    ggplot2::ggsave(filename = paste0( folder,"/red_hastags_",user,".png"),
+    ggplot2::ggsave(filename = paste0( folder,"/red_hastags_",name,".png"),
            device = "png",
+           width = 8,
+           height = 5,
            dpi = 72)
 
 
