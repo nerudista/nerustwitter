@@ -7,7 +7,6 @@
 #' @param type El tipo de objeto twitter a analizar. Puede ser "tendencia" o "usuario". Otros valores pueden causar error
 #' @param num_freq Número de palabras a mostrar.
 #' @param corp_tmln corpus que será tokenizado
-#' @param folder Folder donde se va  a guardar la imagen
 #' @param stopword_pers Vector de stopwords personalizadas para filtrar
 #' @details Genera grafica de red con los usuarios más representativos del corpus recibido.
 #' @examples
@@ -15,14 +14,19 @@
 #' corpus_tweets <- df_tweets %>% select(text) %>% corpus()
 #'
 #' ## Generar gráfica
-#' grafica_usuarios(corpus_tweets,"covid19","tendencia",20,"./03Graficos/")
+#' grafica_usuarios(corpus_tweets,"covid19","tendencia",20)
+#'
+#' ## Para guardar
+#' png(file=paste0( folder,"/all_wordcloud_top.png"),width=600,height=600, units='px', res=120)
+#' grafica_usuarios(corpus_tweets,"covid19","tendencia",20)
+#' dev.off()
+#'
 #' @usage
 #' ## grafica_usuarios(
 #' corp_tmln=corpus,
 #' name="nombre",
 #' type="usuario_tendencia",
 #' num_freq = 10,
-#' folder=".",
 #' stopwords_pers=c("una","palabra","otra")
 #' )
 #' @export
@@ -32,7 +36,6 @@ grafica_usuarios <- function(corp_tmln,
                              name="nombre",
                              type="usuario_tendencia",
                              num_freq = 25,
-                             folder=".",
                              stopwords_pers=""){
 
 
@@ -62,17 +65,15 @@ grafica_usuarios <- function(corp_tmln,
   topgat_fcm <- quanteda::fcm_select(tag_fcm, pattern = toptag)
 
 
-  quanteda::textplot_network(topgat_fcm,
+  plot <- quanteda::textplot_network(topgat_fcm,
                              min_freq = 0.1,
                              edge_color = "orange",
                              edge_alpha = 0.7,
-                             edge_size = 4) %>%
-    ggplot2::ggsave(filename = paste0( folder,"/red_usuarios_",name,".png"),
-           device = "png",
-           width = 8,
-           height = 5,
-           dpi = 72)
+                             edge_size = 4)
 
+  print("Grafica creada")
+
+  return(plot)
 
 
 }

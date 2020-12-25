@@ -8,7 +8,6 @@
 #' @param type El tipo de objeto twitter a analizar. Puede ser "tendencia" o "usuario". Otros valores pueden causar error
 #' @param num_freq Número de palabras a mostrar.
 #' @param corp_tmln corpus que será tokenizado
-#' @param folder Folder donde se va  a guardar la imagen
 #' @param stopword_pers Vector de stopwords personalizadas para filtrar
 #' @details Genera grafica de nube de palabras sin hastags ni nombres de usuarios
 #' @examples
@@ -16,14 +15,13 @@
 #' corpus_tweets <- df_tweets %>% select(text) %>% corpus()
 #'
 #' ## Generar gráfica
-#' grafica_wordcloud_clean(corpus_tweets,"covid19","tendencia",20,"./03Graficos/")
+#' grafica_wordcloud_clean(corpus_tweets,"covid19","tendencia",20)
 #' @usage
 #' ## grafica_wordcloud_clean(
 #' corp_tmln=corpus,
 #' name="nombre",
 #' type="usuario_tendencia",
 #' num_freq = 10,
-#' folder=".",
 #' stopwords_pers=c("una","palabra","otra")
 #' )
 #' @export
@@ -33,7 +31,6 @@ grafica_wordcloud_clean <- function(corp_tmln,
                                     name="nombre",
                                     type="usuario_tendencia",
                                     num_freq = 100,
-                                    folder=".",
                                     stopwords_pers=""){
 
   stopifnot( is.corpus(corp_tmln)
@@ -53,11 +50,11 @@ grafica_wordcloud_clean <- function(corp_tmln,
   words_dfm <- quanteda::dfm_select(words_dfm, pattern = ("@*"), selection = 'remove')
 
 
-  #print("dfm creado")
+  print("dfm creado")
 
   # to work well with the RStudio graphics device (RStudioGD).
-  showtext::showtext_opts(dpi = 96)
-  showtext::showtext_auto()
+  # showtext::showtext_opts(dpi = 96)
+  # showtext::showtext_auto()
 
 
 
@@ -65,8 +62,8 @@ grafica_wordcloud_clean <- function(corp_tmln,
   # Hay que guardar como plot d eR base porque el wordcloud no e funciona como ggplot
   # https://stackoverflow.com/questions/46499719/error-in-using-heatmap-as-the-plot-input-of-ggsave
 
-  png(file=paste0( folder,"/clean_wordcloud_top",num_freq,"_",type,"_",name,".png"),
-      width=600,height=600, units='px', res=120)
+  # png(file=paste0( folder,"/clean_wordcloud_top",num_freq,"_",type,"_",name,".png"),
+  #     width=600,height=600, units='px', res=120)
 
 
   quanteda::textplot_wordcloud( words_dfm,
@@ -74,9 +71,9 @@ grafica_wordcloud_clean <- function(corp_tmln,
                      max_size = 3,
                      random_order = FALSE,
                      color = RColorBrewer::brewer.pal(7, "Blues"),
-                     max_words = 100)
+                     max_words = num_freq)
 
-  dev.off()
+  # dev.off()
+  print("Grafica creada")
 
-  print("Imagen guardada")
 }

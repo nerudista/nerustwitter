@@ -1,15 +1,7 @@
 Package: nerustwitter
 Title: Generador de Gráficas de Análisis de Texto
-Version: 0.1.0
-Authors@R: 
-    person(given = "nerudista",
-           family = "",
-           role = c("aut", "cre"),
-           email = "nhsa6ls@gmail.com",
-           comment = c(ORCID = "YOUR-ORCID-ID")
-           )
-Description: Este es un paquete que genera gráficas  de análisis descriptivo básico de textos. La mayorìa de las funciones recibe un corpues y genera
-              sus gráficas a partir de dicho objeto. Algunas otras reciben un dataframe generado por el paquete *rtweet* y calcula nuevas columnas.
+Version: 0.0.0.91
+Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to
     pick a license
 Encoding: UTF-8

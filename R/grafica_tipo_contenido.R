@@ -4,7 +4,6 @@
 #' @title grafica_contenido
 #' @description Función que grafica un plot de barras
 #' @param tmln dataframe con una columna llamada "contenido_propio"
-#' @param folder Folder donde se va  a guardar la imagen
 #' @details Genera grafica de barras
 #' @examples
 #' grafica_contenido('tmln')
@@ -12,7 +11,7 @@
 #' @export ggplot
 
 
-grafica_tipo_contenido <- function(tmln, folder){
+grafica_tipo_contenido <- function(tmln){
 
   #cargar fuente de google
   sysfonts::font_add_google("Nunito","nunito")
@@ -71,16 +70,18 @@ grafica_tipo_contenido <- function(tmln, folder){
  showtext::showtext_auto()
 
 
-    ggplot2::ggsave(
-      filename = paste0( folder,"/contenido_plot_",user,".png"),
-      plot = plot,
-      width = 8,
-      height = 5,
-      device = "png",
-      dpi =96
-    )
+    # ggplot2::ggsave(
+    #   filename = paste0( folder,"/contenido_plot_",user,".png"),
+    #   plot = plot,
+    #   width = 8,
+    #   height = 5,
+    #   device = "png",
+    #   dpi =96
+    # )
 
-  #print("ggplot done")
+  print("Grafica creada")
+
+  return(plot)
 
 }
 

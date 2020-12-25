@@ -9,7 +9,6 @@ corp_tmln=corpus,
 name="nombre",
 type="usuario_tendencia",
 num_freq = 10,
-folder=".",
 stopwords_pers=c("una","palabra","otra")
 )
 }
@@ -21,8 +20,6 @@ stopwords_pers=c("una","palabra","otra")
 \item{type}{El tipo de objeto twitter a analizar. Puede ser "tendencia" o "usuario". Otros valores pueden causar error}
 
 \item{num_freq}{Número de palabras a mostrar.}
-
-\item{folder}{Folder donde se va  a guardar la imagen}
 
 \item{stopword_pers}{Vector de stopwords personalizadas para filtrar}
 }
@@ -37,5 +34,11 @@ Genera grafica de red con los usuarios más representativos del corpus recibido.
 corpus_tweets <- df_tweets \%>\% select(text) \%>\% corpus()
 
 ## Generar gráfica
-grafica_usuarios(corpus_tweets,"covid19","tendencia",20,"./03Graficos/")
+grafica_usuarios(corpus_tweets,"covid19","tendencia",20)
+
+## Para guardar
+png(file=paste0( folder,"/all_wordcloud_top.png"),width=600,height=600, units='px', res=120)
+grafica_usuarios(corpus_tweets,"covid19","tendencia",20)
+dev.off()
+
 }

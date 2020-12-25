@@ -4,12 +4,12 @@
 \alias{grafica_frecuencia_palabras}
 \title{grafica_frecuencia_palabras}
 \usage{
-## grafica_frecuencia_palabras(
+## Generar grafica
+plot <- grafica_frecuencia_palabras(
 corp_tmln=corpus,
 name="nombre",
 type="usuario_tendencia",
 num_freq = 10,
-folder=".",
 stopwords_pers=c("una","palabra","otra")
 )
 }
@@ -21,8 +21,6 @@ stopwords_pers=c("una","palabra","otra")
 \item{type}{El tipo de objeto twitter a analizar. Puede ser "tendencia" o "usuario". Otros valores causan error.}
 
 \item{num_freq}{Top n de palabras a mostrar}
-
-\item{folder}{Folder donde se va  a guardar la imagen}
 
 \item{stopword_pers}{Vector de  stopwords personalizadas para filtrar}
 }
@@ -37,5 +35,16 @@ Genera wordcloud quitando hashtags y usuarios
 corpus_tweets <- df_tweets \%>\% select(text) \%>\% corpus()
 
 ## Generar gráfica
-grafica_frecuencia_palabras(corpus_tweets,"covid19","tendencia",20,"./03Graficos/")
+plot <- grafica_frecuencia_palabras(corpus_tweets,"covid19","tendencia",20)
+
+## #guardar grafica
+ggplot2::ggsave(
+  filename = "frecuencia_top_20.png",
+  plot = plot,
+  width = 8,
+  height = 5,
+  device = "png",
+  dpi =96
+)
+
 }

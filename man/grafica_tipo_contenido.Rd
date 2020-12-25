@@ -4,12 +4,10 @@
 \alias{grafica_tipo_contenido}
 \title{grafica_contenido}
 \usage{
-grafica_tipo_contenido(tmln, folder)
+grafica_tipo_contenido(tmln)
 }
 \arguments{
 \item{tmln}{dataframe con una columna llamada "contenido_propio"}
-
-\item{folder}{Folder donde se va  a guardar la imagen}
 }
 \description{
 Función que grafica un plot de barras
