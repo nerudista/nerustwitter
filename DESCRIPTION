@@ -1,6 +1,6 @@
 Package: nerustwitter
 Title: Generador de Gráficas de Análisis de Texto
-Version: 0.0.0.91
+Version: 0.1.0
 Description: What the package does (one paragraph).
 License: `use_mit_license()`, `use_gpl3_license()` or friends to
     pick a license
