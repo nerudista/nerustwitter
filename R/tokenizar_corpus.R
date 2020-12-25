@@ -1,12 +1,13 @@
 #' @import magrittr stopwords
 #' @importFrom quanteda tokens tokens_select
 #' @title tokenizar_tweets
-#' @description Función que tokenizaun corpus y quita stopwords
-#' @param corp_tmln corpus que será tokenizado
-#' @param stopword_pers lista de stopwords personalizadas para filtrar
+#' @description Función que tokeniza un corpus y quita stopwords
+#' @param corp_tmln Corpus que será tokenizado
+#' @param stopword_pers Vettor de stopwords personalizadas para filtrar
 #' @details Genera un objeto tokens
-#' @examples
-#' grafica_frecuencia_palabras(corp_tmln,"covid19","tendencia",20,"./03Graficos/")
+#' @usage
+#' tokenizar_corpus(corp_tmln= corpus_twitter
+#' stopwords_pers= c("una","palabra","otra"))
 #' @export
 
 

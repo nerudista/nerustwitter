@@ -1,11 +1,17 @@
 #' @import magrittr
 #' @importFrom dplyr mutate case_when
 #' @title calcula_contenido_propio
-#' @description Esta es una funcion pra calcular si el contenido es propio o retweet o quote
-#' @param df Dataframe con columnas: is_quote
-#' @details Esta funcion calcula si el contenido es propio o si es retweet
+#' @description Esta es una funcion para calcular si el contenido es propio o retweet o quote
+#' @param df Dataframe con columnas: is_quote, is_retweet y reply_to_screen_name.
+#' @details Esta funcion calcula si el contenido es propio o si es retweet. Las tres son obligatorias en el dataframe
+#' @usage calcula_contenido_propio(df = df_tweets_from_rtweet)
 #' @examples
-#' calcula_contenido_propio(df_tweets_from_rtweet)
+#' ## Obtener un dataframe con rtweet
+#' df_tweets <- rtweet::get_timeline(user="usuarioX",n = 600)
+#'
+#' ## Generar columna contenido_propio
+#' calcula_contenido_propio(df=df_tweets)
+#'
 #' @export
 
 

@@ -4,17 +4,22 @@
 \alias{calcula_contenido_propio}
 \title{calcula_contenido_propio}
 \usage{
-calcula_contenido_propio(df)
+calcula_contenido_propio(df = df_tweets_from_rtweet)
 }
 \arguments{
-\item{df}{Dataframe con columnas: is_quote}
+\item{df}{Dataframe con columnas: is_quote, is_retweet y reply_to_screen_name.}
 }
 \description{
-Esta es una funcion pra calcular si el contenido es propio o retweet o quote
+Esta es una funcion para calcular si el contenido es propio o retweet o quote
 }
 \details{
-Esta funcion calcula si el contenido es propio o si es retweet
+Esta funcion calcula si el contenido es propio o si es retweet. Las tres son obligatorias en el dataframe
 }
 \examples{
-calcula_contenido_propio(df_tweets_from_rtweet)
+## Obtener un dataframe con rtweet
+df_tweets <- rtweet::get_timeline(user="usuarioX",n = 600)
+
+## Generar columna contenido_propio
+calcula_contenido_propio(df=df_tweets)
+
 }

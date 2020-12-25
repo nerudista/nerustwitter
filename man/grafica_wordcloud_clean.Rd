@@ -4,34 +4,38 @@
 \alias{grafica_wordcloud_clean}
 \title{grafica_wordcloud_clean}
 \usage{
-grafica_wordcloud_clean(
-  corp_tmln,
-  name = "nombre",
-  type = "usuario_tendencia",
-  num_freq = 100,
-  folder = ".",
-  stopwords_pers = ""
+## grafica_wordcloud_clean(
+corp_tmln=corpus,
+name="nombre",
+type="usuario_tendencia",
+num_freq = 10,
+folder=".",
+stopwords_pers=c("una","palabra","otra")
 )
 }
 \arguments{
 \item{corp_tmln}{corpus que será tokenizado}
 
-\item{name}{nombre del usuario o del trend a analizar}
+\item{name}{Nombre del usuario o del trend a analizar}
 
-\item{type}{el tipo de objeto twitter a analizas. Puede ser "tendencia" o "usuario"}
+\item{type}{El tipo de objeto twitter a analizar. Puede ser "tendencia" o "usuario". Otros valores pueden causar error}
 
-\item{num_freq}{Top n de palabras a mostrar}
+\item{num_freq}{Número de palabras a mostrar.}
 
 \item{folder}{Folder donde se va  a guardar la imagen}
 
-\item{stopword_pers}{lista de stopwords personalizadas para filtrar}
+\item{stopword_pers}{Vector de stopwords personalizadas para filtrar}
 }
 \description{
-Función que grafica una nube de palabras sin hastags ni usuarios
+Función que grafica una nube de palabras sin hashtags ni nombres de usuarios
 }
 \details{
-Genera wordcloud quitando hashtags y usuarios
+Genera grafica de nube de palabras sin hastags ni nombres de usuarios
 }
 \examples{
-grafica_wordcloud_clean('nerudista',corpus,"./03Graficos/")
+## Generar corpus
+corpus_tweets <- df_tweets \%>\% select(text) \%>\% corpus()
+
+## Generar gráfica
+grafica_wordcloud_clean(corpus_tweets,"covid19","tendencia",20,"./03Graficos/")
 }

@@ -3,16 +3,29 @@
 #' @importFrom quanteda tokens tokens_select dfm dfm_select fcm fcm_select textplot_network
 #' @importFrom RColorBrewer brewer.pal
 #' @title grafica_wordcloud_all
-#' @description Función que grafica una nube de palabras sin hastags ni usuarios
-#' @param name nombre del usuario o del trend a analizar
-#' @param type el tipo de objeto twitter a analizas. Puede ser "tendencia" o "usuario"
-#' @param num_freq Top n de palabras a mostrar
+#' @description Función que grafica una nube de palabras incluyendo hastags y nombres de usuarios
+#' @param name Nombre del usuario o del trend a analizar
+#' @param type El tipo de objeto twitter a analizar. Puede ser "tendencia" o "usuario". Otros valores pueden causar error
+#' @param num_freq Número de palabras a mostrar.
 #' @param corp_tmln corpus que será tokenizado
 #' @param folder Folder donde se va  a guardar la imagen
-#' @param stopword_pers lista de stopwords personalizadas para filtrar
-#' @details Genera wordcloud quitando hashtags y usuarios
+#' @param stopword_pers Vector de stopwords personalizadas para filtrar
+#' @details Genera grafica de nube de palabras con hastags y nombres de usuarios
 #' @examples
-#' grafica_wordcloud_all('nerudista',corpus,"./03Graficos/")
+#' ## Generar corpus
+#' corpus_tweets <- df_tweets %>% select(text) %>% corpus()
+#'
+#' ## Generar gráfica
+#' grafica_wordcloud_all(corpus_tweets,"covid19","tendencia",20,"./03Graficos/")
+#' @usage
+#' ## grafica_wordcloud_clean(
+#' corp_tmln=corpus,
+#' name="nombre",
+#' type="usuario_tendencia",
+#' num_freq = 10,
+#' folder=".",
+#' stopwords_pers=c("una","palabra","otra")
+#' )
 #' @export
 
 

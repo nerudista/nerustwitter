@@ -4,19 +4,17 @@
 \alias{tokenizar_corpus}
 \title{tokenizar_tweets}
 \usage{
-tokenizar_corpus(corp_tmln, stopwords_pers = "")
+tokenizar_corpus(corp_tmln= corpus_twitter
+stopwords_pers= c("una","palabra","otra"))
 }
 \arguments{
-\item{corp_tmln}{corpus que será tokenizado}
+\item{corp_tmln}{Corpus que será tokenizado}
 
-\item{stopword_pers}{lista de stopwords personalizadas para filtrar}
+\item{stopword_pers}{Vettor de stopwords personalizadas para filtrar}
 }
 \description{
-Función que tokenizaun corpus y quita stopwords
+Función que tokeniza un corpus y quita stopwords
 }
 \details{
 Genera un objeto tokens
-}
-\examples{
-grafica_frecuencia_palabras(corp_tmln,"covid19","tendencia",20,"./03Graficos/")
 }

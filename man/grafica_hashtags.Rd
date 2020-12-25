@@ -4,34 +4,38 @@
 \alias{grafica_hashtags}
 \title{grafica_hashtags}
 \usage{
-grafica_hashtags(
-  corp_tmln,
-  name = "nombre",
-  type = "usuario_tendencia",
-  num_freq = 25,
-  folder = ".",
-  stopwords_pers = ""
+## grafica_hashtags(
+corp_tmln=corpus,
+name="nombre",
+type="usuario_tendencia",
+num_freq = 10,
+folder=".",
+stopwords_pers=c("una","palabra","otra")
 )
 }
 \arguments{
 \item{corp_tmln}{corpus que será tokenizado}
 
-\item{name}{nombre del usuario o del trend a analizar}
+\item{name}{Nombre del usuario o del trend a analizar}
 
-\item{type}{el tipo de objeto twitter a analizas. Puede ser "tendencia" o "usuario"}
+\item{type}{El tipo de objeto twitter a analizar. Puede ser "tendencia" o "usuario". Otros valores pueden causar error}
 
-\item{num_freq}{Top n de palabras a mostrar}
+\item{num_freq}{Número de palabras a mostrar.}
 
 \item{folder}{Folder donde se va  a guardar la imagen}
 
-\item{stopword_pers}{lista de stopwords personalizadas para filtrar}
+\item{stopword_pers}{Vector de stopwords personalizadas para filtrar}
 }
 \description{
-Función que grafica una red de hastags
+Función que grafica una red de hastags a partir de un corpus recibido.
 }
 \details{
-Genera grafica de barras
+Genera grafica red con los hashtags más representativos del corpus recibido.
 }
 \examples{
-grafica_hashtags('nerudista',corpus,"./03Graficos/")
+## Generar corpus
+corpus_tweets <- df_tweets \%>\% select(text) \%>\% corpus()
+
+## Generar gráfica
+grafica_hashtags(corpus_tweets,"covid19","tendencia",20,"./03Graficos/")
 }

@@ -4,16 +4,30 @@
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom dplyr case_when
 #' @title grafica_frecuencia_palabras
-#' @description Función que grafica la frecuencia de palabras usadas
-#' @param name nombre del usuario o del trend a analizar
-#' @param type el tipo de objeto twitter a analizas. Puede ser "tendencia" o "usuario"
+#' @description Función que genera una gráfica de barras con la frecuencia de palabras usadas en el corpus.
+#' @param name Nombre del usuario o del trend a analizar
+#' @param type El tipo de objeto twitter a analizar. Puede ser "tendencia" o "usuario". Otros valores causan error.
 #' @param num_freq Top n de palabras a mostrar
-#' @param corp_tmln corpus que será tokenizado
+#' @param corp_tmln Corpus que será tokenizado
 #' @param folder Folder donde se va  a guardar la imagen
-#' @param stopword_pers lista de stopwords personalizadas para filtrar
+#' @param stopword_pers Vector de  stopwords personalizadas para filtrar
 #' @details Genera wordcloud quitando hashtags y usuarios
 #' @examples
-#' grafica_frecuencia_palabras(corp_tmln,"covid19","tendencia",20,"./03Graficos/")
+#' ## Generar corpus
+#' corpus_tweets <- df_tweets %>% select(text) %>% corpus()
+#'
+#' ## Generar gráfica
+#' grafica_frecuencia_palabras(corpus_tweets,"covid19","tendencia",20,"./03Graficos/")
+#' @usage
+#' ## grafica_frecuencia_palabras(
+#' corp_tmln=corpus,
+#' name="nombre",
+#' type="usuario_tendencia",
+#' num_freq = 10,
+#' folder=".",
+#' stopwords_pers=c("una","palabra","otra")
+#' )
+#'
 #' @export
 
 
