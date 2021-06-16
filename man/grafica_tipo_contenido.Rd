@@ -2,7 +2,7 @@
 % Please edit documentation in R/grafica_tipo_contenido.R
 \name{grafica_tipo_contenido}
 \alias{grafica_tipo_contenido}
-\title{grafica_contenido}
+\title{grafica_tipo_contenido}
 \usage{
 grafica_tipo_contenido(tmln)
 }

@@ -67,7 +67,7 @@ grafica_hashtags <- function(corp_tmln,
   topgat_fcm <- quanteda::fcm_select(tag_fcm, pattern = toptag)
 
 
-  plot <- quanteda::textplot_network(topgat_fcm, min_freq = 0.1, edge_alpha = 0.7, edge_size = 4)
+  plot <- quanteda.textplots::textplot_network(topgat_fcm, min_freq = 0.1, edge_alpha = 0.7, edge_size = 4)
 
     # ggplot2::ggsave(filename = paste0( folder,"/red_hastags_",name,".png"),
     #        device = "png",
