@@ -51,7 +51,7 @@ grafica_wordcloud_all <- function(corp_tmln,
   # png(file=paste0( folder,"/all_wordcloud_top",num_freq,"_",type,"_",name,".png"),
   #     width=600,height=600, units='px', res=120)
 
-  quanteda::textplot_wordcloud(tweet_dfm,
+  quanteda.textplots::textplot_wordcloud(tweet_dfm,
                      min_size = .8,
                      max_size = 3,
                      random_order = FALSE,

@@ -19,7 +19,7 @@ grafica_tipo_contenido <- function(tmln){
 
 
   # Recupero el usuario
-  user <- tmln %>% dplyr::distinct(screen_name)
+  user <- dplyr::distinct(tmln,screen_name)
   #print(user)
   #print(folder)
 

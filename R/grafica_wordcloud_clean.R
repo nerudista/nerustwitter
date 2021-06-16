@@ -67,7 +67,7 @@ grafica_wordcloud_clean <- function(corp_tmln,
   #     width=600,height=600, units='px', res=120)
 
 
-  quanteda::textplot_wordcloud( words_dfm,
+  quanteda.textplots::textplot_wordcloud( words_dfm,
                      min_size = .8,
                      max_size = 3,
                      random_order = FALSE,

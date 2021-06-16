@@ -72,7 +72,7 @@ grafica_frecuencia_palabras <- function(corp_tmln,
   tweet_dfm <- quanteda::dfm_select(tweet_dfm, pattern = ("@*"), selection = 'remove')
 
   # sacar frecuencia
-  tstat_freq <- quanteda_textstats::textstat_frequency(tweet_dfm, n = num_freq)
+  tstat_freq <- quanteda.textstats::textstat_frequency(tweet_dfm, n = num_freq)
 
   # to work well with the RStudio graphics device (RStudioGD).
   showtext_opts(dpi = 96)
