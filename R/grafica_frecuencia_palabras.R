@@ -1,7 +1,8 @@
 #' @import magrittr ggthemes showtext sysfonts stopwords
 #' @importFrom forcats fct_relevel
 #' @importFrom ggplot2 ggplot geom_bar theme labs
-#' @importFrom quanteda tokens tokens_select dfm dfm_select textstat_frequency ndoc
+#' @importFrom quanteda tokens tokens_select dfm dfm_select ndoc
+#' @importFrom quanteda.textstats textstat_frequency
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom dplyr case_when
 #' @title grafica_frecuencia_palabras
@@ -71,7 +72,7 @@ grafica_frecuencia_palabras <- function(corp_tmln,
   tweet_dfm <- quanteda::dfm_select(tweet_dfm, pattern = ("@*"), selection = 'remove')
 
   # sacar frecuencia
-  tstat_freq <- quanteda::textstat_frequency(tweet_dfm, n = num_freq)
+  tstat_freq <- quanteda_textstats::textstat_frequency(tweet_dfm, n = num_freq)
 
   # to work well with the RStudio graphics device (RStudioGD).
   showtext_opts(dpi = 96)

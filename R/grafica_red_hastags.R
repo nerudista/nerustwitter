@@ -1,6 +1,7 @@
 #' @import magrittr ggplot2 ggthemes showtext sysfonts
 #' @importFrom forcats fct_relevel
-#' @importFrom quanteda tokens tokens_select dfm dfm_select fcm fcm_select textplot_network
+#' @importFrom quanteda tokens tokens_select dfm dfm_select fcm fcm_select
+#' @importFrom quanteda.textplots textplot_network
 #' @title grafica_hashtags
 #' @description Función que grafica una red de hastags a partir de un corpus recibido.
 #' @param name Nombre del usuario o del trend a analizar
