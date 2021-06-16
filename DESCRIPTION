@@ -15,7 +15,7 @@ Imports: dplyr,
          rtweet,
          ggthemes,
          sysfonts,
-         quanteda,
+         quanteda (== 2.1.2),
          forcats,
          RColorBrewer,
          stopwords
