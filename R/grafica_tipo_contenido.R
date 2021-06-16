@@ -1,7 +1,7 @@
 #' @import magrittr ggplot2 ggthemes showtext sysfonts
 #' @importFrom forcats fct_relevel
 #' @importFrom dplyr group_by summarise distinct
-#' @title grafica_contenido
+#' @title grafica_tipo_contenido
 #' @description Función que grafica un plot de barras
 #' @param tmln dataframe con una columna llamada "contenido_propio"
 #' @details Genera grafica de barras
@@ -18,7 +18,7 @@ grafica_tipo_contenido <- function(tmln){
 
 
 
-  # REcupero el usuario
+  # Recupero el usuario
   user <- tmln %>% dplyr::distinct(screen_name)
   #print(user)
   #print(folder)

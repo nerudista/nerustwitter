@@ -40,8 +40,7 @@ grafica_usuarios <- function(corp_tmln,
                              stopwords_pers=""){
 
 
-  stopifnot( is.corpus(corp_tmln)
-  )
+  stopifnot( is.corpus(corp_tmln))
   # Crear objeto tokens a partir del corpus recibido
   tokens_tmln <- nerustwitter::tokenizar_corpus(corp_tmln = corp_tmln,
                                                 stopwords_pers = stopwords_pers)
@@ -66,7 +65,7 @@ grafica_usuarios <- function(corp_tmln,
   topgat_fcm <- quanteda::fcm_select(tag_fcm, pattern = toptag)
 
 
-  plot <- quanteda::textplot_network(topgat_fcm,
+  plot <- quanteda.textplots::textplot_network(topgat_fcm,
                              min_freq = 0.1,
                              edge_color = "orange",
                              edge_alpha = 0.7,
