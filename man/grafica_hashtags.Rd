@@ -6,18 +6,12 @@
 \usage{
 ## grafica_hashtags(
 corp_tmln=corpus,
-name="nombre",
-type="usuario_tendencia",
 num_freq = 10,
 stopwords_pers=c("una","palabra","otra")
 )
 }
 \arguments{
 \item{corp_tmln}{corpus que será tokenizado}
-
-\item{name}{Nombre del usuario o del trend a analizar}
-
-\item{type}{El tipo de objeto twitter a analizar. Puede ser "tendencia" o "usuario". Otros valores pueden causar error}
 
 \item{num_freq}{Número de palabras a mostrar.}
 

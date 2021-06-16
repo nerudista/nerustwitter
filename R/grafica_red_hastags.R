@@ -4,8 +4,6 @@
 #' @importFrom quanteda.textplots textplot_network
 #' @title grafica_hashtags
 #' @description Función que grafica una red de hastags a partir de un corpus recibido.
-#' @param name Nombre del usuario o del trend a analizar
-#' @param type El tipo de objeto twitter a analizar. Puede ser "tendencia" o "usuario". Otros valores pueden causar error
 #' @param num_freq Número de palabras a mostrar.
 #' @param corp_tmln corpus que será tokenizado
 #' @param stopword_pers Vector de stopwords personalizadas para filtrar
@@ -26,8 +24,6 @@
 #' @usage
 #' ## grafica_hashtags(
 #' corp_tmln=corpus,
-#' name="nombre",
-#' type="usuario_tendencia",
 #' num_freq = 10,
 #' stopwords_pers=c("una","palabra","otra")
 #' )
@@ -35,8 +31,6 @@
 
 
 grafica_hashtags <- function(corp_tmln,
-                             name="nombre",
-                             type="usuario_tendencia",
                              num_freq = 25,
                              stopwords_pers=""){
 
