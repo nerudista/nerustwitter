@@ -1,15 +1,15 @@
 Package: nerustwitter
 Title: Generador de Gráficas de Análisis de Texto
-Version: 0.2.0
+Version: 0.3.0
 Authors@R:
     person("nerudista", email = "nhsa6ls@gmail.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: Reads tweets and create graphics
 License: `use_mit_license()`, `use_gpl3_license()` or friends to
     pick a license
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Imports: dplyr,
          forcats,
          ggplot2,
@@ -23,7 +23,3 @@ Imports: dplyr,
          showtext,
          stopwords,
          sysfonts
-         
-         
-        
-         
